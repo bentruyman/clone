@@ -29,15 +29,6 @@ $ clone git@github.com:bentruyman/clone.git # with git+ssh
 $ clone https://github.com/bentruyman/clone.git # with https
 ```
 
-### Shorthand
-
-Repositories can be cloned using a shorthand syntax which will try to clone a
-from `$GITHUB_HOST/${user}/${repo}.git` using `git+ssh`, then `https`.
-
-```console
-$ clone bentruyman/clone
-```
-
 ## Configuration
 
 `clone` can be configured with the following environment variables:
