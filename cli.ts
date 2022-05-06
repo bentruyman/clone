@@ -1,19 +1,20 @@
-import { flags } from "./deps.ts";
+import { flags, path } from "./deps.ts";
 import { clone } from "./mod.ts";
 import { VERSION } from "./version.ts";
 
-const NAME = "quick-clone";
+const REAL_NAME = "quick-clone";
+const EXECUTABLE_NAME = path.basename(Deno.env.get("_")!);
 
 function help() {
-  console.log(`${NAME} ${VERSION}
+  console.log(`${REAL_NAME} ${VERSION}
 
 To clone a repository:
 
-  quick-clone https://github.com/bentruyman/quick-clone.git
-  quick-clone git@github.com:bentruyman/quick-clone.git
+  ${EXECUTABLE_NAME} https://github.com/bentruyman/quick-clone.git
+  ${EXECUTABLE_NAME} git@github.com:bentruyman/quick-clone.git
 
 USAGE:
-    ${NAME} [OPTIONS] <REPO>
+    ${EXECUTABLE_NAME} [OPTIONS] <REPO>
 
 OPTIONS:
     -h, --help
