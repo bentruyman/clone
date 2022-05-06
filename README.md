@@ -16,17 +16,18 @@ $ deno install \
 `quick-clone` clones git repositories into a predictable directory structure.
 
 ```console
-$ clone https://github.com/bentruyman/clone.git
+$ clone https://github.com/bentruyman/quick-clone.git
 ```
 
-The above command clones the `bentruyman/clone` repository into
-`~/Development/src/github.com/bentruyman/clone`, then `cd` into that directory.
+The above command clones the `bentruyman/quick-clone` repository into
+`~/Development/src/github.com/bentruyman/quick-clone`, then `cd` into that
+directory.
 
 Both `git+ssh` and `https` URLs work:
 
 ```console
-$ clone git@github.com:bentruyman/clone.git # with git+ssh
-$ clone https://github.com/bentruyman/clone.git # with https
+$ clone git@github.com:bentruyman/quick-clone.git # with git+ssh
+$ clone https://github.com/bentruyman/quick-clone.git # with https
 ```
 
 ## Configuration
