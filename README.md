@@ -33,8 +33,6 @@ $ clone https://github.com/bentruyman/clone.git # with https
 
 `clone` can be configured with the following environment variables:
 
-- `GITHUB_HOST`: GitHub host to use when using the shorthand syntax (default:
-  `github.com`)
 - `SRC_ROOT`: root directory to clone repositories into (default:
   `$HOME/Development/src`)
 

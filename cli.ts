@@ -21,10 +21,8 @@ OPTIONS:
             Print help information
 
 ENVIRONMENT VARIABLES:
-    GITHUB_HOST    GitHub host to use when using the shorthand syntax (default:
-                   "github.com")
-    SRC_ROOT       root directory to clone repositories into (default:
-                   "$HOME/Development/src")`);
+    SRC_ROOT    root directory to clone repositories into (default:
+                "$HOME/Development/src")`);
 }
 
 async function main() {
