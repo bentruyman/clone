@@ -31,7 +31,7 @@ $ clone https://github.com/bentruyman/clone.git # with https
 
 ## Configuration
 
-`clone` can be configured with the following environment variables:
+`quick-clone` can be configured with the following environment variables:
 
 - `SRC_ROOT`: root directory to clone repositories into (default:
   `$HOME/Development/src`)
