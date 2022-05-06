@@ -47,7 +47,12 @@ async function main() {
 
   const dest = await clone(repo);
 
-  Deno.chdir(dest);
+  const editor = Deno.env.get("VISUAL") ?? Deno.env.get("EDITOR");
+
+  if (editor !== undefined) {
+    const p = Deno.run({ cmd: [editor, dest] });
+    await p.status();
+  }
 }
 
 main();
