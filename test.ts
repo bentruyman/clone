@@ -5,7 +5,7 @@ Deno.test("clone", async () => {
   const root = await Deno.makeTempDir();
   const repo = "https://github.com/bentruyman/empty.git";
 
-  await clone(root, repo);
+  await clone(repo, root);
 
   const readmePath = path.join(root, "github.com/bentruyman/empty/README.md");
   const readmeContents = await Deno.readTextFile(readmePath);
