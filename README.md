@@ -2,6 +2,8 @@
 
 A convenient utility for quickly cloning repositories.
 
+![demo](https://user-images.githubusercontent.com/85315/167231840-03a85ecc-bf7e-4939-a8d5-52add7bc8fa0.gif)
+
 ## Installation
 
 ```console
@@ -20,8 +22,8 @@ $ clone https://github.com/bentruyman/quick-clone.git
 ```
 
 The above command clones the `bentruyman/quick-clone` repository into
-`~/Development/src/github.com/bentruyman/quick-clone`, then `cd` into that
-directory.
+`~/Development/src/github.com/bentruyman/quick-clone`, then opens your preferred
+editor in the cloned directory.
 
 Both `git+ssh` and `https` URLs work:
 
