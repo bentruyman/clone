@@ -1,5 +1,8 @@
 import { SRC_ROOT } from "./config.ts";
 import { path } from "./deps.ts";
+import { CloneFailureError } from "./errors/CloneFailureError.ts";
+import { DirectoryAlreadyExistsError } from "./errors/DirectoryAlreadyExistsError.ts";
+import { InvalidRepositoryPathError } from "./errors/InvalidRepositoryPath.ts";
 
 const R_GITHUB_REPO = /\/(.*)\.git$/;
 const R_GIT_SSH = /.*@(.*):(.*).git/;
@@ -11,6 +14,11 @@ interface RepoPath {
 
 export async function clone(repo: string, root = SRC_ROOT): Promise<string> {
   const dest = createDestPath(root, repo);
+
+  if (await directoryExists(dest)) {
+    throw new DirectoryAlreadyExistsError(dest);
+  }
+
   const clone = Deno.run({
     cmd: ["git", "clone", repo, dest],
   });
@@ -19,7 +27,7 @@ export async function clone(repo: string, root = SRC_ROOT): Promise<string> {
   clone.close();
 
   if (!status.success) {
-    throw new Error(`Failed to clone repository: ${repo}`);
+    throw new CloneFailureError(repo);
   }
 
   return dest;
@@ -34,6 +42,15 @@ export function createDestPath(
   return path.join(root, repoPath.host, repoPath.path);
 }
 
+async function directoryExists(dir: string): Promise<boolean> {
+  try {
+    await Deno.readDir(dir);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function parseRepoPath(repo: string): RepoPath {
   const gitSshMatch = repo.match(R_GIT_SSH);
 
@@ -42,7 +59,7 @@ function parseRepoPath(repo: string): RepoPath {
     const repoPath = url.pathname.match(R_GITHUB_REPO);
 
     if (repoPath === null) {
-      throw new Error(`Invalid repository path: ${repo}`);
+      throw new InvalidRepositoryPathError(repo);
     }
 
     return {

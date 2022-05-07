@@ -1,13 +1,13 @@
 import { flags, path } from "./deps.ts";
 import { clone } from "./mod.ts";
 import { VERSION } from "./version.ts";
+import { DirectoryAlreadyExistsError } from "./errors/DirectoryAlreadyExistsError.ts";
 
 const REAL_NAME = "quick-clone";
 const EXECUTABLE_NAME = path.basename(Deno.env.get("_")!);
 
 function help() {
   console.log(`${REAL_NAME} ${VERSION}
-
 To clone a repository:
 
   ${EXECUTABLE_NAME} https://github.com/bentruyman/quick-clone.git
@@ -45,13 +45,18 @@ async function main() {
     return help();
   }
 
-  const dest = await clone(repo);
+  try {
+    const dest = await clone(repo);
+    const editor = Deno.env.get("VISUAL") ?? Deno.env.get("EDITOR");
 
-  const editor = Deno.env.get("VISUAL") ?? Deno.env.get("EDITOR");
-
-  if (editor !== undefined) {
-    const p = Deno.run({ cmd: [editor, dest] });
-    await p.status();
+    if (editor !== undefined) {
+      const p = Deno.run({ cmd: [editor, dest] });
+      await p.status();
+    }
+  } catch (e) {
+    if (e instanceof DirectoryAlreadyExistsError) {
+      return console.log(e.message);
+    }
   }
 }
 
