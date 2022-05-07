@@ -38,7 +38,7 @@ async function main() {
 
   const repo = result.unknown[0];
 
-  if (result.flags.help === true) {
+  if (result.flags.help === true || Deno.args.length === 0) {
     return help();
   } else if (repo == null || result.unknown.length > 1) {
     console.log(`Too many arguments: ${Deno.args}\n`);
