@@ -34,8 +34,10 @@ $ clone https://github.com/bentruyman/quick-clone.git # with https
 
 `quick-clone` can be configured with the following environment variables:
 
+- `EDITOR`: program to open cloned repos in if `$VISUAL` is undefined
 - `SRC_ROOT`: root directory to clone repositories into (default:
   `$HOME/Development/src`)
+- `VISUAL`: program to open cloned repos in
 
 ## License
 
