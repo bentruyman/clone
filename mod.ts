@@ -44,7 +44,7 @@ export function createDestPath(
 
 async function directoryExists(dir: string): Promise<boolean> {
   try {
-    await Deno.readDir(dir);
+    await Deno.lstat(dir);
     return true;
   } catch {
     return false;
