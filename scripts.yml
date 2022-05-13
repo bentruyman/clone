@@ -1,0 +1,9 @@
+scripts:
+  install: deno install --allow-{env,read,write,run} --unstable --force --name clone ./cli.ts
+  lint: deno lint && deno fmt --check
+  pre-commit:
+    cmd:
+      - vr lint
+      - vr test
+    gitHook: pre-commit
+  test: deno test -A test.ts
