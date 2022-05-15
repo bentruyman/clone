@@ -1,7 +1,12 @@
 {
   "folders": [{ "path": "." }],
   "extensions": {
-    "recommendations": ["denoland.vscode-deno", "esbenp.prettier-vscode"]
+    "recommendations": [
+      "denoland.vscode-deno",
+      "emeraldwalk.runonsave",
+      "esbenp.prettier-vscode",
+      "ryanluker.vscode-coverage-gutters"
+    ]
   },
   "settings": {
     "[markdown]": {
@@ -12,7 +17,16 @@
       "editor.defaultFormatter": "denoland.vscode-deno",
       "editor.formatOnSave": true
     },
-
-    "deno.enable": true
+    "coverage-gutters.showGutterCoverage": true,
+    "deno.enable": true,
+    "emeraldwalk.runonsave": {
+      "commands": [
+        {
+          "match": ".ts",
+          "isAsync": true,
+          "cmd": "deno test -A --unstable --coverage=coverage && deno coverage coverage --lcov > lcov.info"
+        }
+      ]
+    }
   }
 }
