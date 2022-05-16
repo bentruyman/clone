@@ -55,17 +55,21 @@ function parseRepoPath(repo: string): RepoPath {
   const gitSshMatch = repo.match(R_GIT_SSH);
 
   if (gitSshMatch === null) {
-    const url = new URL(repo);
-    const repoPath = url.pathname.match(R_GITHUB_REPO);
+    try {
+      const url = new URL(repo);
+      const repoPath = url.pathname.match(R_GITHUB_REPO);
 
-    if (repoPath === null) {
+      if (repoPath === null) {
+        throw new InvalidRepositoryPathError(repo);
+      }
+
+      return {
+        host: url.host,
+        path: repoPath[1],
+      };
+    } catch {
       throw new InvalidRepositoryPathError(repo);
     }
-
-    return {
-      host: url.host,
-      path: repoPath[1],
-    };
   }
 
   return {
